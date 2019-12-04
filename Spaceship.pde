@@ -23,4 +23,15 @@ class Spaceship extends Floater
       return (float) myCenterY;
     }
 
+ public float getdX(){
+      return (float) myDirectionX;
+    }
+    
+    public float getdY(){
+      return (float) myDirectionY;
+    }
+    
+    public float getp(){
+      return (float) myPointDirection;
+    }
 }

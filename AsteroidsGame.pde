@@ -1,10 +1,12 @@
 Star [] big = new Star[200];
 Spaceship yes = new Spaceship();
+Bullet zoom = new Bullet();
  ArrayList <Asteroid> smol = new ArrayList <Asteroid>();
 boolean wPressed = false;
 boolean sPressed = false;
 boolean aPressed = false;
 boolean dPressed = false;
+boolean vPressed = false;
 
 
   
@@ -22,7 +24,6 @@ public void setup()
 }
 public void draw() 
 {
-  System.out.println(yes.getX());
   background(0);
    for(int i = 0; i< big.length; i++){
   big[i].show();
@@ -79,7 +80,11 @@ public void draw()
   yes.accelerate(0.25);
   }
   
- 
+   if(vPressed == true){
+     zoom.show();
+     zoom.move();
+     zoom.accelerate(0.5);
+   }
  
 }
 public void keyPressed(){
@@ -96,6 +101,9 @@ public void keyPressed(){
    
    if(key == 's') 
    sPressed = true;
+   
+   if(key == 'v')
+   vPressed = true;
    
    if(key == 'h') 
    yes.hyperspace();
@@ -115,5 +123,8 @@ public void keyPressed(){
    
    if(key == 's') 
    sPressed = false;
+   
+   if(key == 'v')
+   vPressed = false;
   }
  
