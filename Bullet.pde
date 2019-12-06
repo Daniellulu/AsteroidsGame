@@ -1,14 +1,13 @@
 class Bullet extends Floater
 {
-  public Bullet(){
-   int [] xS = {-8,16,-8,-2};
-      int [] yS = {-8,0,8,0};
-      xCorners = xS;
-      yCorners = yS;
+  public Bullet(Spaceship yes){
       myColor = 255;
-      myCenterX = yes.getX();
-      myCenterY = yes.getY();
-      myPointDirection = yes.getp();
+      myCenterX = yes.myCenterX;
+      myCenterY = yes.myCenterY;
+      myPointDirection = yes.myPointDirection;
+      double dRadians =myPointDirection*(Math.PI/180);
+      myDirectionX = 5*Math.cos(dRadians);
+      myDirectionY = 5*Math.sin(dRadians);
   }
   
   public float getX(){
@@ -19,8 +18,31 @@ class Bullet extends Floater
       return (float) myCenterY;
     }
    
+   public void show() {
+     noStroke();
+    fill(255);
+    ellipse((float)myCenterX,(float)myCenterY,3,3);
+   }
    public void move(){
-     myCenterX += yes.getdX();    
-    myCenterY += yes.getdY();
+     myCenterX += myDirectionX;
+     myCenterY += myDirectionY;
+     //check to see if bullet went off screen and remove it
+     if(myCenterX >width)
+    {     
+      zoom.remove(this);    
+    }    
+    else if (myCenterX<0)
+    {     
+      zoom.remove(this);    
+    }    
+    if(myCenterY >height)
+    {    
+      zoom.remove(this);    
+    } 
+    
+    else if (myCenterY < 0)
+    {     
+      zoom.remove(this);   
+    }   
    }
 }
