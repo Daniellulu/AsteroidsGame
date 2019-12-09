@@ -7,7 +7,7 @@ boolean sPressed = false;
 boolean aPressed = false;
 boolean dPressed = false;
 boolean vPressed = false;
-
+int score = 0;
 
 
 
@@ -21,6 +21,8 @@ public void setup()
   for (int i = 0; i <25; i++) {
     smol.add(new Asteroid());
   }
+  
+  
 }
 public void draw() 
 {
