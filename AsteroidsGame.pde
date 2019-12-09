@@ -18,7 +18,7 @@ public void setup()
   for (int i = 0; i< big.length; i++) {
     big[i] = new Star();
   }
-  for (int i = 0; i <25; i++) {
+  for (int i = 0; i <30; i++) {
     smol.add(new Asteroid());
   }
   
