@@ -8,6 +8,7 @@ boolean aPressed = false;
 boolean dPressed = false;
 boolean vPressed = false;
 int score = 0;
+int health = 500;
 
 
 
@@ -18,15 +19,22 @@ public void setup()
   for (int i = 0; i< big.length; i++) {
     big[i] = new Star();
   }
-  for (int i = 0; i <30; i++) {
+  for (int i = 0; i <35; i++) {
     smol.add(new Asteroid());
   }
-  
+  fill(255);
+  textSize(26);
+  text("Health: " + health, 20,20);
+  text("Score: " +score, 50,20);
   
 }
 public void draw() 
 {
   background(0);
+    fill(255);
+  textSize(26);
+  text("Health: " + health, 50,30);
+  text("Score: " + score, 50,60);
   for (int i = 0; i< big.length; i++) {
     big[i].show();
   }
@@ -34,16 +42,22 @@ public void draw()
     
     smol.get(i).move();
     smol.get(i).show();
-    //if (dist(yes.getX(), yes.getY(), smol.get(i).getX(), smol.get(i).getY()) <= 20) {
-    //  smol.remove(i);
-    //}
+    if (dist(yes.getX(), yes.getY(), smol.get(i).getX(), smol.get(i).getY()) <= 20) {
+      health-= 100;
+      smol.remove(i);
+       if(health <= 0){
+  gameOver();
+   }
+    }
     for (Bullet temp : zoom) {
       if (dist(temp.getX(), temp.getY(), smol.get(i).getX(), smol.get(i).getY()) <= 20) {
+        score+= 100;
         smol.remove(i);
         //System.out.println("hit asteroid at index "+i);
         break;
       }
     }
+
   }
   for (int i = 0; i< zoom.size(); i++) {
     zoom.get(i).show();
@@ -137,4 +151,16 @@ public void keyReleased() {
 
   if (key == 'v')
     vPressed = false;
+}
+public void gameOver(){
+  yes.remove();
+    smol.clear();
+  
+   noLoop();
+   background(0);
+    fill(255);
+    textSize(50);
+    text("Game Over !", 200,350);
+    text("Your Score: " + score, 125,400);
+    
 }

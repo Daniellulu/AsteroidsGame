@@ -34,4 +34,7 @@ class Spaceship extends Floater
     public float getp(){
       return (float) myPointDirection;
     }
+    public void remove(){
+      myColor = 0;
+    }
 }
