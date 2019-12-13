@@ -19,7 +19,7 @@ public void setup()
   for (int i = 0; i< big.length; i++) {
     big[i] = new Star();
   }
-  for (int i = 0; i <35; i++) {
+  for (int i = 0; i <40; i++) {
     smol.add(new Asteroid());
   }
   fill(255);
@@ -38,6 +38,9 @@ public void draw()
   for (int i = 0; i< big.length; i++) {
     big[i].show();
   }
+  if(score >= 3000){
+     win();
+   }
   for (int i = 0; i< smol.size(); i++) {
     
     smol.get(i).move();
@@ -48,7 +51,9 @@ public void draw()
        if(health <= 0){
   gameOver();
    }
+ 
     }
+ 
     for (Bullet temp : zoom) {
       if (dist(temp.getX(), temp.getY(), smol.get(i).getX(), smol.get(i).getY()) <= 20) {
         score+= 100;
@@ -155,12 +160,23 @@ public void keyReleased() {
 public void gameOver(){
   yes.remove();
     smol.clear();
-  
+    zoom.clear();
    noLoop();
    background(0);
     fill(255);
     textSize(50);
-    text("Game Over !", 200,350);
+    text("Game Over!", 200,350);
     text("Your Score: " + score, 125,400);
     
+}
+public void win(){
+ yes.remove();
+    smol.clear();
+    zoom.clear();
+   noLoop();
+   background(0);
+    fill(255);
+    textSize(50);
+    text("You Won!", 200,350);
+    text("Your Score: " + score, 125,400);
 }
